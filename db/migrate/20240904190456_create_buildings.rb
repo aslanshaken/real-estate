@@ -8,5 +8,6 @@ class CreateBuildings < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+    add_index :buildings, [:address, :state, :zip], unique: true
   end
 end

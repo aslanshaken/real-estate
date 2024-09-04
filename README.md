@@ -1,66 +1,12 @@
 # Perchwell Fullstack Assessment
 
 ## Project Description
-This project involves building a Ruby on Rails application with a React frontend to manage and interact with a list of physical buildings. The application serves two types of stakeholders: internal clients who can create and edit buildings, and external clients who can read building information via an API. Additionally, the application supports custom fields associated with each building, tailored to individual clients' needs.
-
-## Tech Stack
-- **Backend**: Ruby on Rails
-- **Frontend**: React
-- **Database**: PostgreSQL
-- **External APIs**: RESTful API
-
-## Functional Features
-- **Client Management**: Ability to manage clients who own the buildings.
-- **Building Management**: CRUD operations (Create, Read, Update, Delete) for buildings.
-- **Custom Fields**: Support for custom fields associated with each building, configurable per client.
-- **API Access**: RESTful API endpoints for external clients to read building information.
-
-## Non-Functional Features
-- **Performance**: Optimized database queries and indexing for faster retrieval of data.
-- **Scalability**: The application is designed to easily scale with additional clients and buildings.
-- **Security**: Basic security measures, such as input validation and error handling.
-- **Documentation**: Clear API documentation for easy integration by external clients.
-
-## API Endpoints
-
-### Client-Side Endpoints
-1. **Create Building**
-   - **Endpoint**: `/buildings`
-   - **Method**: POST
-   - **Description**: Create a new building associated with a client. Validates data before saving.
+This project involves building a Ruby on Rails application to manage and interact with a list of physical buildings. The application serves two types of stakeholders: internal clients who can create and edit buildings, and external clients who can read building information via an API. Additionally, the application supports custom fields associated with each building, tailored to individual clients' needs.
 
 2. **Edit Building**
    - **Endpoint**: `/buildings/:id`
    - **Method**: PUT/PATCH
    - **Description**: Edit an existing building by ID with the same constraints as create.
-
-3. **Read Buildings**
-   - **Endpoint**: `/buildings`
-   - **Method**: GET
-   - **Description**: Retrieve all buildings, supports pagination. Returns address, client name, and custom fields.
-
-### Example Response
-```json
-{
-    "status": "success",
-    "buildings": [
-        {
-            "id": "1",
-            "client_name": "rock_walls_only",
-            "address": "45 Main St",
-            "rock_wall_size": "15",
-            "rock_wall_length": "26"
-        },
-        {
-            "id": "2",
-            "client_name": "brick_walls_only",
-            "address": "123 Side St",
-            "brick_color": "red",
-            "brick_count": ""
-        }
-    ]
-}
-```
 
 ## Database Schema
 The schema includes the following main objects:

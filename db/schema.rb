@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2024_09_04_190509) do
     t.integer "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["address", "state", "zip"], name: "index_buildings_on_address_and_state_and_zip", unique: true
     t.index ["client_id"], name: "index_buildings_on_client_id"
   end
 
