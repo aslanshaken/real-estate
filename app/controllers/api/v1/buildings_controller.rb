@@ -3,7 +3,12 @@ class Api::V1::BuildingsController < ApplicationController
   before_action :set_building, only: [:update]
 
   def index
+    page = params[:page] || 1
+    per_page = params[:per_page] || 10
     @buildings = Building.includes(:client, :building_custom_fields)
+                         .page(page)
+                         .per(per_page)
+
     render json: {
       status: 'success',
       buildings: @buildings.map do |building|
@@ -16,7 +21,7 @@ class Api::V1::BuildingsController < ApplicationController
         }.merge(
           building.building_custom_fields.each_with_object({}) do |bcf, hash|
             if bcf.custom_field
-               hash[bcf.custom_field.name.parameterize.underscore] = bcf.value
+              hash[bcf.custom_field.name.parameterize.underscore] = bcf.value
             end
           end
         )
@@ -26,9 +31,14 @@ class Api::V1::BuildingsController < ApplicationController
 
   def create
     @building = Building.new(building_params.except(:custom_fields))
+
     if @building.save
-      handle_custom_fields(@building, building_params[:custom_fields])
-      render json: { status: 'success', message: 'Building created successfully' }, status: :created
+      if handle_custom_fields(@building, building_params[:custom_fields])
+        render json: { status: 'success', message: 'Building created successfully' }, status: :created
+      else
+        @building.destroy
+        render json: { status: 'error', message: 'Invalid custom fields' }, status: :unprocessable_entity
+      end
     else
       render json: { status: 'error', errors: @building.errors.full_messages }, status: :unprocessable_entity
     end
@@ -36,8 +46,11 @@ class Api::V1::BuildingsController < ApplicationController
 
   def update
     if @building.update(building_params.except(:custom_fields))
-      handle_custom_fields(@building, building_params[:custom_fields])
-      render json: { status: 'success', message: 'Building updated successfully' }, status: :ok
+      if handle_custom_fields(@building, building_params[:custom_fields])
+        render json: { status: 'success', message: 'Building updated successfully' }, status: :ok
+      else
+        render json: { status: 'error', message: 'Invalid custom fields' }, status: :unprocessable_entity
+      end
     else
       render json: { status: 'error', errors: @building.errors.full_messages }, status: :unprocessable_entity
     end
@@ -81,5 +94,4 @@ class Api::V1::BuildingsController < ApplicationController
       'text'
     end
   end
-
 end
