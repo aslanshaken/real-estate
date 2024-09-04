@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_09_04_175932) do
+ActiveRecord::Schema.define(version: 2024_09_04_190509) do
+
+  create_table "building_custom_fields", force: :cascade do |t|
+    t.integer "building_id"
+    t.integer "custom_field_id"
+    t.string "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["building_id"], name: "index_building_custom_fields_on_building_id"
+    t.index ["custom_field_id"], name: "index_building_custom_fields_on_custom_field_id"
+  end
 
   create_table "buildings", force: :cascade do |t|
     t.string "address"
@@ -19,7 +29,6 @@ ActiveRecord::Schema.define(version: 2024_09_04_175932) do
     t.integer "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.json "custom_fields"
     t.index ["client_id"], name: "index_buildings_on_client_id"
   end
 
@@ -32,6 +41,7 @@ ActiveRecord::Schema.define(version: 2024_09_04_175932) do
   create_table "custom_fields", force: :cascade do |t|
     t.string "name"
     t.string "field_type"
+    t.json "values", default: {}
     t.integer "client_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
