@@ -1,8 +1,14 @@
 # Perchwell Fullstack Assessment
 
 ## Project Description
-This project involves building a Ruby on Rails application to manage and interact with a list of physical buildings. The application serves two types of stakeholders: internal clients who can create and edit buildings, and external clients who can read building information via an API. Additionally, the application supports custom fields associated with each building, tailored to individual clients' needs.
+This project involves building a Ruby on Rails application to manage and interact with a list of physical buildings. The application caters to two types of stakeholders:
+- **Internal Clients**: Can create and edit buildings.
+- **External Clients**: Can access building information via an API.
 
+Additionally, the application supports custom fields for each building, allowing clients to define specific attributes according to their needs.
+
+## Documentation
+Please review the [Notion Documentation](https://succulent-tortoise-2a9.notion.site/Perchwell-Assessment-a4fca24109b448c8b90807ae6433189b?pvs=4) for detailed information about the project.
 
 ## Installation Instructions
 
@@ -48,7 +54,7 @@ Start the Rails backend server in one terminal:
 rails s
 ```
 
-### Step 7: Access the Application
+### Step 6: Access the Application
 The Rails backend API will be accessible at http://localhost:3000.
 
 Additional Commands
