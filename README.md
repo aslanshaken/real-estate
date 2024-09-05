@@ -1,4 +1,4 @@
-# Perchwell Fullstack Assessment
+# Perchwell Assessment
 
 ## Project Description
 This project involves building a Ruby on Rails application to manage and interact with a list of physical buildings. The application caters to two types of stakeholders:
@@ -56,14 +56,6 @@ rails s
 
 ### Step 6: Access the Application
 The Rails backend API will be accessible at http://localhost:3000.
-
-Additional Commands
-Run Tests: To run tests for the backend, use:
-
-```bash
-rails test
-```
-
 
 ### Troubleshooting
 Common Issues: If you encounter issues, ensure that all services (PostgreSQL, Rails server) are running correctly and that there are no port conflicts.
